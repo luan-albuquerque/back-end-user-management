@@ -14,8 +14,10 @@ export class UserModel {
   password: string;
   @Column('int')
   access_level: number;
+  @Column({ default: true }) 
+  is_enabled: boolean;
   @Column('timestamp')
   createdAt: Date;
-  @Column("timestamp")
-  updateAt: Date;
+  @Column({ nullable: true, default: null }) 
+  updateAt?: Date; 
 }
