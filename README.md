@@ -1,4 +1,3 @@
-/src
 |-- /app
 |   |-- /modules
 |   |   |-- /user
@@ -19,6 +18,9 @@
 |   |   |   |   |   |-- user.interface.ts
 |   |   |   |   |-- /enums (se houver)
 |   |   |   |   |   |-- user.enum.ts
+|   |   |   |-- /usecases
+|   |   |   |   |-- create-user.usecase.ts
+|   |   |   |   |-- update-user.usecase.ts
 |   |   |   |-- /controller
 |   |   |   |   |-- user.controller.ts
 |   |   |   |-- /presentation (opcional)
