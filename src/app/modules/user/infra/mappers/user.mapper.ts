@@ -31,4 +31,12 @@ export class UserMapper {
       updatedAt: model.updateAt,
     }, model.id);
   }
+
+  entitiesToModels(users: UserEntity[]): UserModel[] {
+    return users.map(user => this.entityToModel(user));
+  }
+
+  modelsToEntities(models: UserModel[]): UserEntity[] {
+    return models.map(model => this.modelToEntity(model));
+  }
 }

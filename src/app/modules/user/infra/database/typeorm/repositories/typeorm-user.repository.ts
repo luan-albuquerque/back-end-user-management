@@ -13,5 +13,15 @@ export class UserRepositoryImpl extends BaseRepositoryImpl<UserModel> implements
    protected readonly userRepository: Repository<UserModel>) {
     super(userRepository);
   }
+    async findOne(id: string): Promise<UserModel> {
+        return await this.userRepository.findOneBy({
+            id,
+        });
+    }
+    async findByEmail(email: string): Promise<UserModel> {
+        return await this.userRepository.findOneBy({
+            email,
+        });
+    }
 
 }
