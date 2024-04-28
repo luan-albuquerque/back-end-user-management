@@ -1,11 +1,8 @@
 //Considere os seguintes dados para o usuário: Nome, Sobrenome, e-mail, senha, nível de acesso
 
 import { randomUUID } from "crypto";
+import { AccessLevel } from "../data/enums/acess-level.enum";
 
-export enum AccessLevel {
-     ADMIN = 1,
-     STANDARD = 2,
-}
 
 export type UserProps = {
    name: string;

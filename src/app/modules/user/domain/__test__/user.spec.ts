@@ -1,4 +1,5 @@
-import { AccessLevel, UserEntity, UserProps } from "../user.entity"
+import { AccessLevel } from "../../data/enums/acess-level.enum";
+import { UserEntity, UserProps } from "../user.entity"
 
 describe("User Test", () => {
 
