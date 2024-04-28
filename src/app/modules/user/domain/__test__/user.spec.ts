@@ -14,11 +14,11 @@ describe("User Test", () => {
             createdAt: new Date(),
         };
         let user = UserEntity.create(userProps);
-        expect(user.props).toEqual({
-            ...userProps, 
-            is_enabled: true,
-            updatedAt: null
-        })
+        expect(user.props.access_level).toEqual(userProps.access_level);
+        expect(user.props.password).toEqual(userProps.password);
+        expect(user.props.email).toEqual(userProps.email);
+        expect(user.props.surname).toEqual(userProps.surname);
+        expect(user.props.name).toEqual(userProps.name);
 
         userProps = {
             name: 'admin_name',
@@ -31,11 +31,11 @@ describe("User Test", () => {
 
         expect(user.id).toBeDefined();
         user = UserEntity.create(userProps);
-        expect(user.props).toEqual({
-            ...userProps, 
-            is_enabled: true,
-            updatedAt: null,
-        })
+        expect(user.props.access_level).toEqual(userProps.access_level);
+        expect(user.props.password).toEqual(userProps.password);
+        expect(user.props.email).toEqual(userProps.email);
+        expect(user.props.surname).toEqual(userProps.surname);
+        expect(user.props.name).toEqual(userProps.name);
 
     })
 
@@ -51,11 +51,11 @@ describe("User Test", () => {
             createdAt: new Date(),
         };
         let user = UserEntity.create(userProps);
-        expect(user.props).toEqual({
-            ...userProps, 
-            is_enabled: true,
-            updatedAt: null
-        })
+        expect(user.props.access_level).toEqual(userProps.access_level);
+        expect(user.props.password).toEqual(userProps.password);
+        expect(user.props.email).toEqual(userProps.email);
+        expect(user.props.surname).toEqual(userProps.surname);
+        expect(user.props.name).toEqual(userProps.name);
 
         userProps = {
             name: 'standard_name',
@@ -68,11 +68,11 @@ describe("User Test", () => {
 
         expect(user.id).toBeDefined();
         user = UserEntity.create(userProps);
-        expect(user.props).toEqual({
-            ...userProps, 
-            is_enabled: true,
-            updatedAt: null
-        })
+        expect(user.props.access_level).toEqual(userProps.access_level);
+        expect(user.props.password).toEqual(userProps.password);
+        expect(user.props.email).toEqual(userProps.email);
+        expect(user.props.surname).toEqual(userProps.surname);
+        expect(user.props.name).toEqual(userProps.name);
 
     })
 

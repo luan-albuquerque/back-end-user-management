@@ -9,14 +9,10 @@ export  class BaseRepositoryImpl<T> implements BaseRepositoryContract<T> {
   constructor(protected readonly repository: Repository<T>) {}
 
   async create(entity: DeepPartial<T>): Promise<T> {
-    try {
-        
+  
     return await this.repository.create(entity);
         
-    } catch (error) {
-        console.log({error});
-        
-    }
+   
   }
 
   async save(entity: T): Promise<T> {
@@ -27,10 +23,6 @@ export  class BaseRepositoryImpl<T> implements BaseRepositoryContract<T> {
     await this.repository.delete(id);
   }
 
-  async findOne(id: string): Promise<T | undefined> {
-    // return await this.repository.findOne(id);
-    return undefined;
-  }
 
   async findAll(): Promise<T[]> {
     return await this.repository.find();

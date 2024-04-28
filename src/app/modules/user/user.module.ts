@@ -10,11 +10,15 @@ import { UserRepositoryContract } from './data/contract/user-repository.contract
 import { DatabaseModule } from './infra/database/database.module';
 import { UserRepositoryImpl } from './infra/database/typeorm/repositories/typeorm-user.repository';
 import { UserMapper } from './infra/mappers/user.mapper';
+import { AuthModule } from '../auth/auth.module';
+import { JwtConfigModule } from 'src/app/core/jwt/jwt.module';
 
 
 @Module({
   imports: [
     DatabaseModule,
+    JwtConfigModule,
+    
   ],
   controllers: [UserController],
   providers: [
