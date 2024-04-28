@@ -9,11 +9,14 @@ describe("User Test", () => {
             surname: 'admin_surname',
             access_level: AccessLevel.ADMIN,
             email: "useradmin@mail.com",
-            password: 'admin_password'
+            password: 'admin_password',
+            createdAt: new Date(),
         };
         let user = UserEntity.create(userProps);
         expect(user.props).toEqual({
-            ...userProps
+            ...userProps, 
+            is_enabled: true,
+            updatedAt: null
         })
 
         userProps = {
@@ -22,12 +25,15 @@ describe("User Test", () => {
             access_level: AccessLevel.ADMIN,
             email: "useradmin2@mail.com",
             password: "admin_password",
+            createdAt: new Date(),
         }
 
         expect(user.id).toBeDefined();
         user = UserEntity.create(userProps);
         expect(user.props).toEqual({
-            ...userProps
+            ...userProps, 
+            is_enabled: true,
+            updatedAt: null,
         })
 
     })
@@ -40,11 +46,14 @@ describe("User Test", () => {
             surname: 'standard_surname',
             access_level: AccessLevel.STANDARD,
             email: "userstandard@mail.com",
-            password: 'standard_password'
+            password: 'standard_password',
+            createdAt: new Date(),
         };
         let user = UserEntity.create(userProps);
         expect(user.props).toEqual({
-            ...userProps
+            ...userProps, 
+            is_enabled: true,
+            updatedAt: null
         })
 
         userProps = {
@@ -53,12 +62,15 @@ describe("User Test", () => {
             access_level: AccessLevel.STANDARD,
             email: "userstandard@mail.com",
             password: "admin_password",
+            createdAt: new Date(),
         }
 
         expect(user.id).toBeDefined();
         user = UserEntity.create(userProps);
         expect(user.props).toEqual({
-            ...userProps
+            ...userProps, 
+            is_enabled: true,
+            updatedAt: null
         })
 
     })
@@ -69,11 +81,13 @@ describe("User Test", () => {
             surname: 'surname',
             email: 'email@mail.com',
             password: 'password',
-            access_level: AccessLevel.STANDARD
+            access_level: AccessLevel.STANDARD,
+            createdAt: new Date(),
         };
         const user = UserEntity.create(userProps);
         user.updateName('new_name');
         expect(user.name).toBe('new_name');
+        expect(user.updatedAt).toBeInstanceOf(Date)
     });
 
     it('should be updateSurname method', () => {
@@ -82,11 +96,13 @@ describe("User Test", () => {
             surname: 'surname',
             email: 'email@mail.com',
             password: 'password',
-            access_level: AccessLevel.STANDARD
+            access_level: AccessLevel.STANDARD,
+            createdAt: new Date(),
         };
         let user = UserEntity.create(userProps);
         user.updateSurname('new_surname');
         expect(user.surname).toBe('new_surname');
+        expect(user.updatedAt).toBeInstanceOf(Date)
     });
 
     it('should be updateEmail method', () => {
@@ -95,11 +111,13 @@ describe("User Test", () => {
             surname: 'surname',
             email: 'email@mail.com',
             password: 'password',
-            access_level: AccessLevel.STANDARD
+            access_level: AccessLevel.STANDARD,
+            createdAt: new Date(),
         };
         let user = UserEntity.create(userProps);
         user.updateEmail('new_email_updated@mail.com');
         expect(user.email).toBe('new_email_updated@mail.com');
+        expect(user.updatedAt).toBeInstanceOf(Date)
     });
 
     it('should be updatePassword method', () => {
@@ -108,11 +126,28 @@ describe("User Test", () => {
             surname: 'surname',
             email: 'email@mail.com',
             password: 'password',
-            access_level: AccessLevel.STANDARD
+            access_level: AccessLevel.STANDARD,
+            createdAt: new Date(),
         };
         let user = UserEntity.create(userProps);
         user.updatePassword('new_password_updated');
         expect(user.password).toBe('new_password_updated');
+        expect(user.updatedAt).toBeInstanceOf(Date)
+    });
+
+    it('should be updateIsEnabled method', () => {
+        let userProps: UserProps = {
+            name: 'name',
+            surname: 'surname',
+            email: 'email@mail.com',
+            password: 'password',
+            access_level: AccessLevel.STANDARD,
+            createdAt: new Date(),
+        };
+        let user = UserEntity.create(userProps);
+        user.updateIsEnabled(false);
+        expect(user.is_enabled).toBe(false);
+        expect(user.updatedAt).toBeInstanceOf(Date)
     });
 
 

@@ -13,6 +13,9 @@ export type UserProps = {
    email: string;
    password: string;
    access_level: AccessLevel;
+   is_enabled?: boolean;
+   createdAt: Date;
+   updatedAt?: Date | null;
 }
 
 
@@ -24,6 +27,9 @@ export class UserEntity {
         this.id = id || randomUUID();
         this.props = {
             ...props,
+            is_enabled: true,
+            createdAt: new Date(),
+            updatedAt: null,
         }
     }
 
@@ -46,6 +52,16 @@ export class UserEntity {
   get access_level(){
     return this.props.access_level
   }
+  get is_enabled(){
+    return this.props.is_enabled;
+  }
+  get createdAt(){
+    return this.props.createdAt;
+  }
+  get updatedAt(){
+    return this.props.updatedAt;
+  }
+
   // SET
   private set name(value: string){
     this.props.name = value;
@@ -67,26 +83,43 @@ export class UserEntity {
     this.props.access_level = value;
   }
 
+  private set is_enabled(value: boolean){
+    this.props.is_enabled = value;
+  }
+
+  private set updateAt(value: Date){
+    this.props.updatedAt = value;
+  }
 //METHOD
   
  updateName(name: string): void{
         this.name = name;
+        this.updateAt = new Date();
   }
 
   updateSurname(surname: string): void {
     this.surname = surname;
+    this.updateAt = new Date();
   }
 
   updateEmail(email: string): void {
     this.email = email;
+    this.updateAt = new Date();
   }
 
   updatePassword(password: string): void {
     this.password = password;
+    this.updateAt = new Date();
   }
 
   updateAccesslevel(access_level: AccessLevel): void {
     this.access_level = access_level;
+    this.updateAt = new Date();
+  }
+
+  updateIsEnabled(is_enabled: boolean): void {
+    this.is_enabled = is_enabled;
+    this.updateAt = new Date();
   }
 
 
