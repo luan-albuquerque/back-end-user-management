@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
+import { BadRequestException, ConflictException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import SendEmailConfirmRecoverPasswordUseCase from "../../mail/usecase/sendEmailConfirmRecoveyPassword.usecase";
 import { UserRepositoryContract } from "../../user/data/contract/user-repository.contract";
 import { RedefinePasswordDTO } from "../presentation/dto/redefine-password.dto";
@@ -7,7 +7,7 @@ import { UserMapper } from "../../user/infra/mappers/user.mapper";
 import TokenDecryptUseCase from "./token-decrypt.use.case";
 
 @Injectable()
-export default class RedefinePasswordService {
+export default class RedefinePasswordUseCase {
     constructor(
         private readonly userRepository: UserRepositoryContract,
         private mail: SendEmailConfirmRecoverPasswordUseCase,
@@ -17,7 +17,17 @@ export default class RedefinePasswordService {
 
     async execute({ token, password, confirmpassword }: RedefinePasswordDTO) {
 
-        const tokenDecrypt: { expirationDate: string, userId: string } = JSON.parse(await this.tokenDecryptUseCase.execute(token));
+
+        var resultDescrypt: string = "";
+
+        try {
+            resultDescrypt = await this.tokenDecryptUseCase.execute(token)
+        } catch (err) {
+
+            throw new UnauthorizedException('Token is invalid!');
+
+        }
+        const tokenDecrypt: { expirationDate: string, userId: string } = JSON.parse(resultDescrypt);
 
         if (!tokenDecrypt) {
             throw new UnauthorizedException('Token not Unauthorized');
@@ -36,14 +46,14 @@ export default class RedefinePasswordService {
 
 
         if (password != confirmpassword) {
-            throw new UnauthorizedException('Estas senhas repassadas não correspondem',)
+            throw new ConflictException('Password are not the same',)
         }
 
         // Verificar se senha é igual a antiga
-        const newPassIsEqualLastPassword: boolean = await bcrypt.compare(password, user.password);
-        if (newPassIsEqualLastPassword) {
-            throw new UnauthorizedException('Esta nova senha é igual a última senha, tente outra',)
-        }
+        // const newPassIsEqualLastPassword: boolean = await bcrypt.compare(password, user.password);
+        // if (newPassIsEqualLastPassword) {
+        //     throw new UnauthorizedException('Esta nova senha é igual a última senha, tente outra',)
+        // }
 
         const existingUser = this.userMapper.modelToEntity(user);
 

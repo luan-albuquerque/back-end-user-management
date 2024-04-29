@@ -22,6 +22,7 @@ export default class SendEmailWithTokenUseCase {
         expirationDate.setMinutes(expirationDate.getMinutes() + 20);
 
         const token = await this.tokenEncryptUseCase.execute(JSON.stringify({expirationDate, userId: user.id}));
+               
                 
         await this.mail.execute(user.email, token );
 

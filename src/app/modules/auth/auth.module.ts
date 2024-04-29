@@ -8,9 +8,10 @@ import SendEmailConfirmRecoverPasswordUseCase from "../mail/usecase/sendEmailCon
 import SendEmailWithTokenForRecoverPasswordUseCase from "../mail/usecase/SendEmailWithTokenForRecoverPassword.usecase";
 import SendEmailWithTokenUseCase from "./usecase/send-email-with-token.usecase";
 import TokenEncryptUseCase from "./usecase/token-encrypt.usecase";
-import RedefinePasswordService from "./usecase/redefine-password.usecase";
 import TokenDecryptUseCase from "./usecase/token-decrypt.use.case";
 import { UserMapper } from "../user/infra/mappers/user.mapper";
+import VerifyTokenNewPasswordUseCase from "./usecase/verify-token-new-pass.usecase";
+import RedefinePasswordUseCase from "./usecase/redefine-password.usecase";
 
 
 @Module({
@@ -27,7 +28,8 @@ import { UserMapper } from "../user/infra/mappers/user.mapper";
     TokenEncryptUseCase,
     TokenDecryptUseCase,
     UserMapper,
-    RedefinePasswordService,
+    RedefinePasswordUseCase,
+    VerifyTokenNewPasswordUseCase,
     SendEmailConfirmRecoverPasswordUseCase,
     SendEmailWithTokenForRecoverPasswordUseCase
   ], 
