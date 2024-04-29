@@ -1,0 +1,37 @@
+version: '3.3'
+
+services:
+  backend-user-management:
+    depends_on:
+      - postgres
+    image: backend-user-management:latest
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        PORT: ${PORT}
+    container_name: backend-user
+    network_mode: bridge
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    restart: always
+    ports:
+      - ${PORT}:3000
+    env_file:
+      - .env
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+

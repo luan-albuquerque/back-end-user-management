@@ -4,9 +4,15 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModel } from './typeorm/models/user.model';
 import { UserRepositoryContract } from '../../data/contract/user-repository.contract';
 import { UserRepositoryImpl } from './typeorm/repositories/typeorm-user.repository';
+import { UserMapper } from '../mappers/user.mapper';
+import { UserEntity } from '../../domain/user.entity';
+import { AccessLevel } from '../../data/enums/acess-level.enum';
+import * as bcrypt from 'bcrypt';
+
 
 @Module({
     imports: [
+
       ConfigModule.forRoot(),
       TypeOrmModule.forRootAsync({
         imports: [ConfigModule],
@@ -34,4 +40,30 @@ import { UserRepositoryImpl } from './typeorm/repositories/typeorm-user.reposito
         UserRepositoryContract
     ]
   })
-  export class DatabaseModule {}
+  export class DatabaseModule {
+
+    constructor(private readonly userRepository: UserRepositoryContract) {
+      this.seedUsers();
+    }
+  
+    async seedUsers() {
+      const users = await this.userRepository.findAll();
+      console.log("entrou");
+      
+      if (users.length == 0) {
+        
+          await this.userRepository.save(
+           new UserMapper().entityToModel( UserEntity.create({
+            name: "INDT",
+            surname: "Melhor Instituto de Manaus",
+            access_level: AccessLevel.ADMIN,
+            createdAt: new Date(),
+            is_enabled: true,
+            updatedAt: null,
+            email: "testeindtmail@gmail.com",
+            password: bcrypt.hashSync("123456", 10)
+        }))
+          )
+      }
+    }
+  }
