@@ -8,16 +8,16 @@ Além disso, implemente testes unitários com Jest em partes essenciais do códi
 
 Para facilitar a compreensão e integração com nossa API, utilizamos o Swagger como forma de documentação. Você pode acessar a documentação da API em /api/docs.
 
-## LINK PARA TESTAR EM PRODUÇÃO:
+## Link para testar em produção:
 
 `link`: https://
 
-## LINK DO SWAGGER:
+## Link para visualizar a documentação (swagger):
 
 `link`: https://
 
 
-# OBSERVAÇÕES
+# Observações
 
 - É necessário adicionar todas as variaveis de ambiente para rodar perfeitamente.
 
@@ -26,7 +26,7 @@ Para facilitar a compreensão e integração com nossa API, utilizamos o Swagger
 - Qualquer dúvida, pode mandar mensagem para o meu e-mail luan.santos6605@gmail.com
 
 
-## ARVORE DE DIRETORIOS E ARQUIVOS
+## Arvore de diretorios e arquivos
 
 ```shell
   $ tree
@@ -120,12 +120,12 @@ Para facilitar a compreensão e integração com nossa API, utilizamos o Swagger
 ```
 
 
-## INICIALIZANDO PROJETO
+## Inicializando Projeto
 
 1. Clonar repositório
 
 ```bash
-git clone https://github.com/pabloguedesc/api-indt.git
+git clone https://github.com/luan-albuquerque/back-end-user-management.git
 ```
 
 2. Instalar as depedências
