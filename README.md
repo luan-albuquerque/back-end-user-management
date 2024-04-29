@@ -43,6 +43,13 @@ Para facilitar a compreensão e integração com nossa API, utilizamos o Swagger
 
 # Observações
 
+- Para realizar o acesso utilize o seginte email e senha Obs: Esse usuario é criado quando é inicializado o sistema (seed):
+
+  "email": "testeindtmail@gmail.com",
+  "password": "123456"
+
+- No DB_HOST adicione o ip da sua maquina.
+
 - É necessário adicionar todas as variaveis de ambiente para rodar perfeitamente.
 
 - Deixarei no .env.example as variaveis ja disponivel.
@@ -187,7 +194,7 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 4. Rodar a aplicação com docker
 
 ```bash
-docker-compose up --build
+docker compose up -d --build
 ```
 
 5. Rodar a aplicação localmente
