@@ -8,6 +8,30 @@ Além disso, implemente testes unitários com Jest em partes essenciais do códi
 
 Para facilitar a compreensão e integração com nossa API, utilizamos o Swagger como forma de documentação. Você pode acessar a documentação da API em /api/docs.
 
+## Pré-requisitos
+
+- Sistema operacional Linux Ubuntu 20.04 lts ou Windows 11
+
+- Instalar VS CODE para visualizar os projetos
+
+- Instalar Node versão v18.20.0 !Importante
+
+- Instalar Yarn versão 1.22.22 !Importante
+
+- Instalar a versão Git 2.25.1 
+
+- Instalar Docker versão 24.0.5
+
+- Instalar Docker-compose versão1.25.0-1
+
+## Tecnologias
+- Nestjs
+- TypeORM
+- Postgresql
+- Swagger
+- NodeMailer
+- Docker
+
 ## Link para testar em produção:
 
 `link`: https://
