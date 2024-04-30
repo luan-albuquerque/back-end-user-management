@@ -27,7 +27,8 @@ export class CreateUserUseCase {
         surname: createUserDto.surname,
         password: bcrypt.hashSync(createUserDto.password, 10),
         email: createUserDto.email,
-        createdAt: new Date()
+        createdAt: new Date(),
+        is_enabled: true,
     })
 
      const userModel = this.userMapper.entityToModel(user);

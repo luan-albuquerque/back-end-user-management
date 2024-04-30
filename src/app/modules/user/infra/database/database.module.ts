@@ -48,7 +48,7 @@ import * as bcrypt from 'bcrypt';
   
     async seedUsers() {
       const users = await this.userRepository.findAll();
-      console.log("entrou");
+  
       
       if (users.length == 0) {
         

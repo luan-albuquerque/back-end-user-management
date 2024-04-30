@@ -1,11 +1,10 @@
+
+
 import { ApiProperty } from '@nestjs/swagger';
 
-export class UpdatePasswordDto {
+export class VerifyTokenPasswordDTO {
   
   @ApiProperty()
-  readonly email: string;
-
-  
-
+  readonly token: string;
 
 }

@@ -10,7 +10,7 @@ export type UserProps = {
    email: string;
    password: string;
    access_level: AccessLevel;
-   is_enabled?: boolean;
+   is_enabled: boolean;
    createdAt: Date;
    updatedAt?: Date | null;
 }
@@ -24,7 +24,6 @@ export class UserEntity {
         this.id = id || randomUUID();
         this.props = {
             ...props,
-            is_enabled: true,
             createdAt: new Date(),
             updatedAt: null,
         }

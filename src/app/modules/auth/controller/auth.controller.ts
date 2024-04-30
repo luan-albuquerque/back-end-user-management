@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpCode, Patch, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { JwtAuthGuard } from 'src/app/core/guards/jwt.guard';
@@ -7,8 +7,11 @@ import { AuthenticateUseCase } from '../usecase/authenticate.usecase';
 import SendEmailWithTokenUseCase from '../usecase/send-email-with-token.usecase';
 import { UpdatePasswordDto } from '../presentation/dto/update-password.dto';
 import { RedefinePasswordDTO } from '../presentation/dto/redefine-password.dto';
-import RedefinePasswordService from '../usecase/redefine-password.usecase';
+import RedefinePasswordUseCase from '../usecase/redefine-password.usecase';
+import VerifyTokenNewPasswordUseCase from '../usecase/verify-token-new-pass.usecase';
+import { VerifyTokenPasswordDTO } from '../presentation/dto/verify-token-password.dto';
 
+  
 @ApiTags('auth')
 @Controller('auth')
 @ApiBearerAuth()
@@ -16,7 +19,8 @@ export class AuthController {
    constructor(
     private readonly authenticateUseCase: AuthenticateUseCase,
     private readonly sendEmailWithTokenUseCase: SendEmailWithTokenUseCase,
-    private readonly redefinePasswordService: RedefinePasswordService
+    private readonly redefinePasswordUseCase: RedefinePasswordUseCase,
+    private readonly verifyTokenNewPasswordUseCase: VerifyTokenNewPasswordUseCase
 
    ) {}
 
@@ -29,7 +33,17 @@ export class AuthController {
      return await this.authenticateUseCase.execute(loginDto);
   }
 
-  @Put('email-repair-password')
+  @Patch('validate-token')
+  @UseGuards(JwtAuthGuard)
+  @ApiResponse({ status: 200, description: 'Password updated.' })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  async validateToken(@Req() req: any) {
+
+   return req.user;
+   
+  }
+
+  @Patch('email-repair-password')
   @ApiResponse({ status: 200, description: 'Send Email success.' })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   async updatePassword(@Body() updatePasswordDto: UpdatePasswordDto) {
@@ -41,9 +55,17 @@ export class AuthController {
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   async redefinePassword(@Body() redefinePasswordDTO: RedefinePasswordDTO) {
 
-    await this.redefinePasswordService.execute(redefinePasswordDTO);
+    await this.redefinePasswordUseCase.execute(redefinePasswordDTO);
+  }
+
+
+  @Patch('verify-token-password')
+  @ApiResponse({ status: 200, description: 'Password updated.' })
+  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  async verifyTokenPass(@Body() verifyTokenPassword: VerifyTokenPasswordDTO) {
+
+    await this.verifyTokenNewPasswordUseCase.execute(verifyTokenPassword.token);
   }
 }
-
 
 

@@ -5,5 +5,6 @@ import { UserModel } from "../../infra/database/typeorm/models/user.model";
 export abstract class UserRepositoryContract extends BaseRepositoryContract<UserModel> {
     abstract findByEmail(email: string): Promise<UserModel>;
     abstract findOne(id: string ): Promise<UserModel | undefined>;
+    abstract findUsersGroupedByTypeAndStatus(): Promise<{ type: string, status: boolean, count: number }[]> 
     
 }

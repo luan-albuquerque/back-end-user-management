@@ -38,6 +38,13 @@ export class UpdateUserUseCase {
         if (updateUserDto.access_level) {
           existingUser.updateAccesslevel(updateUserDto.access_level);
         }
+
+        
+         
+         existingUser.updateIsEnabled(updateUserDto.is_enabled);
+
+         
+        
         if (updateUserDto.email && updateUserDto.email !== existingUser.email) {
           existingUser.updateEmail(updateUserDto.email);
         }
