@@ -11,6 +11,7 @@ import { FindUserByIdUseCase } from '../usecase/find-user-by-id.usecase';
 import { UserResponse } from '../presentation/responses/user.response';
 import { AdminAuthGuard } from 'src/app/core/guards/admin.guard';
 import { JwtAuthGuard } from 'src/app/core/guards/jwt.guard';
+import { FindUsersByTypeStatusUseCase } from '../usecase/find-users-by-type-status.usecase';
 
 
 @ApiTags('user')
@@ -24,6 +25,7 @@ export class UserController {
         private readonly deleteUserUseCase: DeleteUserUseCase,
         private readonly findAllUsersUseCase: FindAllUsersUseCase,
         private readonly findUserByIdUseCase: FindUserByIdUseCase,
+        private readonly findUsersByTypeStatusUseCase: FindUsersByTypeStatusUseCase
     ) {
 
     }
@@ -40,7 +42,20 @@ export class UserController {
         } catch (error) {
             throw UserResponse.error(error.status, error.message);
         }
+        
+    }
 
+    @ApiOperation({ summary: 'Data users for dashboard' })
+    @ApiResponse({ status: 200, description: 'Return data users for dashboard'})
+    @Get('dashboard')
+    async dashboardUserStatusAndType(): Promise<UserResponse<any>> {
+        try {
+             const dash = await this.findUsersByTypeStatusUseCase.execute()
+            
+            return UserResponse.success<{ type: string, status: boolean, count: number }[]>("Data users for dashboard.", dash)
+        } catch (error) {
+            throw UserResponse.error(error.status, error.message);
+        }
     }
 
     @ApiOperation({ summary: 'Get all users' })
@@ -100,4 +115,7 @@ export class UserController {
             throw UserResponse.error(error.status, error.message);
         }
     }
+
 }
+
+

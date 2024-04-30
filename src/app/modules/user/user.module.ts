@@ -12,6 +12,7 @@ import { UserRepositoryImpl } from './infra/database/typeorm/repositories/typeor
 import { UserMapper } from './infra/mappers/user.mapper';
 import { AuthModule } from '../auth/auth.module';
 import { JwtConfigModule } from 'src/app/core/jwt/jwt.module';
+import { FindUsersByTypeStatusUseCase } from './usecase/find-users-by-type-status.usecase';
 
 
 @Module({
@@ -28,6 +29,7 @@ import { JwtConfigModule } from 'src/app/core/jwt/jwt.module';
     DeleteUserUseCase,
     FindAllUsersUseCase,
     FindUserByIdUseCase,
+    FindUsersByTypeStatusUseCase
   ], 
   exports: [], 
 })
