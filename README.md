@@ -31,14 +31,16 @@ Para facilitar a compreensão e integração com nossa API, utilizamos o Swagger
 - Swagger
 - NodeMailer
 - Docker
+- Nginx
+- AWS
 
 ## Link para testar em produção:
 
-`link`: https://
+`link`: http://api.ecore-inovation.com/
 
 ## Link para visualizar a documentação (swagger):
 
-`link`: https://
+`link`: http://api.ecore-inovation.com/api/docs
 
 
 # Observações
